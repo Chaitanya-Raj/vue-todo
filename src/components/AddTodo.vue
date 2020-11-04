@@ -1,12 +1,12 @@
 <template>
   <div>
-    <form @submit="addTodo">
+    <form @submit.prevent="addTodo">
       <input
         type="text"
         v-model="text"
         name="text"
         placeholder="Enter todo item..."
-        maxlength="50"
+        maxlength="120"
       />
       <button type="submit">Add</button>
     </form>
@@ -24,8 +24,7 @@ export default {
     };
   },
   methods: {
-    addTodo(e) {
-      e.preventDefault();
+    addTodo() {
       if (this.text !== "") {
         const newTodo = {
           id: v4(),

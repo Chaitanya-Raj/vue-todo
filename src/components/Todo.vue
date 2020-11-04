@@ -22,6 +22,7 @@ export default {
 <style scoped>
 .completed {
   text-decoration: line-through;
+  opacity: 0.7;
 }
 
 div {
@@ -38,7 +39,7 @@ div {
 p {
   color: #eee;
   word-wrap: break-word;
-  word-break: break-all;
+  /* word-break: break-all; */
   padding-right: 15px;
 }
 
@@ -52,9 +53,13 @@ button {
 
 @media screen and (min-width: 768px) {
   div {
-    height: 100px;
+    height: 150px;
     margin: 10px;
     font-size: 1.3rem;
+  }
+
+  p {
+    padding: 10px;
   }
 
   button {

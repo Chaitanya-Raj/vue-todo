@@ -30,9 +30,16 @@ ul {
 
 li {
   flex-basis: 100%;
+  min-height: 0;
 }
 
 @media screen and (min-width: 768px) {
+  li {
+    flex-basis: 50%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
   li {
     flex-basis: 33.3333%;
   }
