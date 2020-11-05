@@ -1,6 +1,6 @@
 <template>
-  <div @click="markComplete">
-    <p :class="{ completed: todo.completed }">
+  <div @click="markComplete" :class="{ completed: todo.completed }">
+    <p>
       {{ todo.text }}
     </p>
     <button @click="$emit('delete', todo.id)"><b>X</b></button>
@@ -14,6 +14,7 @@ export default {
   methods: {
     markComplete() {
       this.todo.completed = !this.todo.completed;
+      this.$emit("edit");
     },
   },
 };
@@ -21,8 +22,16 @@ export default {
 
 <style scoped>
 .completed {
+  background: #333;
+}
+
+.completed > p {
   text-decoration: line-through;
-  opacity: 0.7;
+  opacity: 0.5;
+}
+
+.completed > button {
+  background: #aaa;
 }
 
 div {
@@ -32,8 +41,19 @@ div {
   border-radius: 20px;
   padding-left: 20px;
   padding-right: 5px;
-  background: #333;
+  background: #111;
   cursor: pointer;
+  flex-grow: 1;
+  animation: fade-in 1s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 p {
@@ -41,6 +61,8 @@ p {
   word-wrap: break-word;
   /* word-break: break-all; */
   padding-right: 15px;
+  animation: fade-in 2s;
+  text-align: left;
 }
 
 button {
@@ -49,6 +71,7 @@ button {
   border: none;
   border-radius: 50%;
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 @media screen and (min-width: 768px) {
@@ -60,6 +83,8 @@ button {
 
   p {
     padding: 10px;
+    flex-grow: 1;
+    text-align: center;
   }
 
   button {

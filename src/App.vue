@@ -2,7 +2,7 @@
   <div id="app">
     <h1>TodoList</h1>
     <AddTodo @add="addTodo" />
-    <Todos :todos="todos" @delete="deleteTodo" />
+    <Todos :todos="todos" @delete="deleteTodo" @edit="editTodo" />
   </div>
 </template>
 
@@ -23,11 +23,14 @@ export default {
   methods: {
     addTodo(newTodo) {
       this.todos = [...this.todos, newTodo];
+      this.editTodo();
+    },
+    editTodo() {
       localStorage.setItem("todos", JSON.stringify(this.todos));
     },
     deleteTodo(todoId) {
       this.todos = this.todos.filter((todo) => todo.id !== todoId);
-      localStorage.setItem("todos", JSON.stringify(this.todos));
+      this.editTodo();
     },
   },
 };
@@ -53,7 +56,7 @@ body {
 }
 
 h1 {
-  background: #333;
+  background: #111;
   color: #eee;
   margin: 0;
   margin-bottom: 30px;

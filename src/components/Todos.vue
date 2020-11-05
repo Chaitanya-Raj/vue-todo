@@ -2,7 +2,11 @@
   <div>
     <ul>
       <li :key="todo.id" v-for="todo in todos">
-        <Todo :todo="todo" @delete="$emit('delete', todo.id)" />
+        <Todo
+          :todo="todo"
+          @delete="$emit('delete', todo.id)"
+          @edit="$emit('edit')"
+        />
       </li>
     </ul>
   </div>
