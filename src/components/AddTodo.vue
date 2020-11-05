@@ -5,7 +5,7 @@
         type="text"
         v-model="text"
         name="text"
-        placeholder="Enter todo item..."
+        placeholder="Enter todo items..."
         maxlength="120"
       />
       <!-- <button type="submit">Add</button> -->
@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     addTodo() {
-      if (this.text !== "") {
+      if (this.text.trim() !== "") {
         const newTodo = {
           id: v4(),
           text: this.text,
@@ -44,6 +44,7 @@ div {
   display: flex;
   justify-content: center;
   align-content: center;
+  margin-bottom: 10px;
 }
 
 form {
@@ -60,19 +61,6 @@ input {
   font-size: 1.3rem;
   border-radius: 20px;
   border: none;
-}
-
-button {
-  border: none;
-  width: 15%;
-  background: white;
-  border-radius: 20px;
-  font-size: 1.2rem;
-}
-
-button:focus,
-button:hover {
-  background: skyblue;
 }
 
 @media screen and (min-width: 768px) {

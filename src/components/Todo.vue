@@ -1,9 +1,8 @@
 <template>
-  <div @click="markComplete" :class="{ completed: todo.completed }">
-    <p>
-      {{ todo.text }}
-    </p>
-    <button @click="$emit('delete', todo.id)"><b>X</b></button>
+  <div :class="{ completed: todo.completed }">
+    <p contenteditable @keyup="editTodo" v-html="todo.text"></p>
+    <button @click="markComplete" id="done">✔</button>
+    <button @click="$emit('delete', todo.id)" id="delete">✖</button>
   </div>
 </template>
 
@@ -14,6 +13,10 @@ export default {
   methods: {
     markComplete() {
       this.todo.completed = !this.todo.completed;
+      this.$emit("edit");
+    },
+    editTodo(e) {
+      this.todo.text = e.target.innerHTML;
       this.$emit("edit");
     },
   },
@@ -31,18 +34,19 @@ export default {
 }
 
 .completed > button {
-  background: #aaa;
+  background: #111;
+  color: #eee;
 }
 
 div {
-  margin: 10px 5px;
+  margin: 5px 5px;
+  height: 4rem;
   display: flex;
   align-items: center;
   border-radius: 20px;
   padding-left: 20px;
   padding-right: 5px;
   background: var(--background);
-  cursor: pointer;
   flex-grow: 1;
   animation: fade-in 1s;
 }
@@ -61,22 +65,27 @@ p {
   word-wrap: break-word;
   /* word-break: break-all; */
   padding-right: 15px;
-  animation: fade-in 2s;
   text-align: left;
 }
 
 button {
-  height: 20px;
+  height: 2rem;
+  width: 2rem;
   margin: 10px;
+  background: #fff;
   border: none;
   border-radius: 50%;
-  margin-left: auto;
+  cursor: pointer;
   flex-shrink: 0;
+}
+
+#done {
+  margin-left: auto;
 }
 
 @media screen and (min-width: 768px) {
   div {
-    height: 150px;
+    height: 9.5rem;
     margin: 10px;
     font-size: 1.3rem;
   }
