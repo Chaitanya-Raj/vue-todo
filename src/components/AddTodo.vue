@@ -8,7 +8,7 @@
         placeholder="Enter todo item..."
         maxlength="120"
       />
-      <button type="submit">Add</button>
+      <!-- <button type="submit">Add</button> -->
     </form>
   </div>
 </template>
@@ -54,7 +54,7 @@ form {
 }
 
 input {
-  width: 80%;
+  width: 100%;
   height: 40px;
   text-align: center;
   font-size: 1.3rem;

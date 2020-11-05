@@ -41,7 +41,7 @@ div {
   border-radius: 20px;
   padding-left: 20px;
   padding-right: 5px;
-  background: #111;
+  background: var(--background);
   cursor: pointer;
   flex-grow: 1;
   animation: fade-in 1s;
@@ -57,7 +57,7 @@ div {
 }
 
 p {
-  color: #eee;
+  color: var(--text);
   word-wrap: break-word;
   /* word-break: break-all; */
   padding-right: 15px;

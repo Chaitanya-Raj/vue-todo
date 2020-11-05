@@ -42,6 +42,11 @@ export default {
   box-sizing: border-box;
 }
 
+:root {
+  --background: #253a52;
+  --text: #eee;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -53,11 +58,12 @@ body {
   min-height: 100vh;
   text-align: center;
   background: #ddd;
+  border-radius: 20px;
 }
 
 h1 {
-  background: #111;
-  color: #eee;
+  background: var(--background);
+  color: var(--text);
   margin: 0;
   margin-bottom: 30px;
   padding: 20px;
