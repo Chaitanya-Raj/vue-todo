@@ -1,34 +1,32 @@
 <template>
-  <div>
-    <div v-if="todos.length > 0">
-      <div id="filters">
-        <button
-          id="active"
-          @click="
-            active = !active;
-            completed = false;
-          "
-          :class="{ checked: this.active }"
-        >
-          Active
-        </button>
-        <button
-          id="completed"
-          @click="
-            completed = !completed;
-            active = false;
-          "
-          :class="{ checked: this.completed }"
-        >
-          Completed
-        </button>
-      </div>
-      <p>
-        {{ todos.filter((t) => !t.completed).length }}
-        {{ todos.filter((t) => !t.completed).length > 1 ? "Tasks" : "Task" }}
-        Remaining
-      </p>
+  <div v-if="todos.length > 0">
+    <div id="filters">
+      <button
+        id="active"
+        @click="
+          active = !active;
+          completed = false;
+        "
+        :class="{ checked: this.active }"
+      >
+        Active
+      </button>
+      <button
+        id="completed"
+        @click="
+          completed = !completed;
+          active = false;
+        "
+        :class="{ checked: this.completed }"
+      >
+        Completed
+      </button>
     </div>
+    <p>
+      {{ todos.filter((t) => !t.completed).length }}
+      {{ todos.filter((t) => !t.completed).length > 1 ? "Tasks" : "Task" }}
+      Remaining
+    </p>
     <ul>
       <li :key="todo.id" v-for="todo in filteredTodos">
         <Todo
@@ -38,6 +36,15 @@
         />
       </li>
     </ul>
+    <button
+      @click="
+        todos.forEach((t) => {
+          if (t.completed) $emit('delete', t.id);
+        })
+      "
+    >
+      Clear Completed
+    </button>
   </div>
 </template>
 

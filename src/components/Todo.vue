@@ -1,6 +1,6 @@
 <template>
   <div :class="{ completed: todo.completed }">
-    <p contenteditable @keyup="editTodo" v-html="todo.text"></p>
+    <p contenteditable @blur="editTodo" v-html="todo.text"></p>
     <button @click="markComplete" id="done">✔</button>
     <button @click="$emit('delete', todo.id)" id="delete">✖</button>
   </div>
@@ -12,12 +12,12 @@ export default {
   props: ["todo"],
   methods: {
     markComplete() {
-      this.todo.completed = !this.todo.completed;
-      this.$emit("edit");
+      const editedTodo = { ...this.todo, completed: !this.todo.completed };
+      this.$emit("edit", editedTodo);
     },
     editTodo(e) {
-      this.todo.text = e.target.innerHTML;
-      this.$emit("edit");
+      const editedTodo = { ...this.todo, text: e.target.innerHTML };
+      this.$emit("edit", editedTodo);
     },
   },
 };

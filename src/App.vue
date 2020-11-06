@@ -23,14 +23,20 @@ export default {
   methods: {
     addTodo(newTodo) {
       this.todos = [...this.todos, newTodo];
-      this.editTodo();
+      this.save();
     },
-    editTodo() {
+    editTodo(editedTodo) {
+      this.todos = this.todos.map((t) =>
+        t.id === editedTodo.id ? editedTodo : t
+      );
+      this.save();
+    },
+    save() {
       localStorage.setItem("todos", JSON.stringify(this.todos));
     },
     deleteTodo(todoId) {
       this.todos = this.todos.filter((todo) => todo.id !== todoId);
-      this.editTodo();
+      this.save();
     },
   },
 };
