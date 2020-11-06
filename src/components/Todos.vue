@@ -4,20 +4,20 @@
       <button
         id="active"
         @click="
-          active = !active;
-          completed = false;
+          showActive = !showActive;
+          showCompleted = false;
         "
-        :class="{ checked: this.active }"
+        :class="{ checked: this.showActive }"
       >
         Active
       </button>
       <button
         id="completed"
         @click="
-          completed = !completed;
-          active = false;
+          showCompleted = !showCompleted;
+          showActive = false;
         "
-        :class="{ checked: this.completed }"
+        :class="{ checked: this.showCompleted }"
       >
         Completed
       </button>
@@ -58,15 +58,16 @@ export default {
   props: ["todos"],
   data() {
     return {
-      completed: false,
-      active: false,
+      showCompleted: false,
+      showActive: false,
     };
   },
   computed: {
     filteredTodos: function() {
+      console.log(this.todos);
       let f = this.todos;
-      if (this.completed) f = f.filter((t) => t.completed);
-      if (this.active) f = f.filter((t) => !t.completed);
+      if (this.showCompleted) f = f.filter((t) => t.completed);
+      if (this.showActive) f = f.filter((t) => !t.completed);
       return f;
     },
   },

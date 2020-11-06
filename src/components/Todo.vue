@@ -12,12 +12,12 @@ export default {
   props: ["todo"],
   methods: {
     markComplete() {
-      const editedTodo = { ...this.todo, completed: !this.todo.completed };
-      this.$emit("edit", editedTodo);
+      this.todo.completed = !this.todo.completed;
+      this.$emit("edit");
     },
     editTodo(e) {
-      const editedTodo = { ...this.todo, text: e.target.innerHTML };
-      this.$emit("edit", editedTodo);
+      this.todo.text = e.target.innerHTML;
+      this.$emit("edit");
     },
   },
 };
